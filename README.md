@@ -29,8 +29,29 @@ The solution involved building a robust SQL-based ETL pipeline to extract, clean
 
 📊 Project Architecture
 
-<img width="572" height="541" alt="image" src="https://github.com/user-attachments/assets/0d11190b-9f42-447a-a859-08c4e6d9c6ae" />
-
+Legacy Database
+      │
+      ▼
+SQL Extraction
+      │
+      ▼
+Data Cleaning & Standardization
+      │
+      ▼
+Schema Mapping
+      │
+      ▼
+CSV Generation
+      │
+      ▼
+Zoho CRM Migration
+      │
+      ▼
+Zoho Analytics
+      │
+      ├────────► Zoho Books
+      │
+      └────────► Zoho Desk
 
 
 ⚙️ ETL Workflow
