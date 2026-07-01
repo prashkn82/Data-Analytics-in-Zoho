@@ -1,14 +1,11 @@
-# 🚀 Zoho CRM Data Migration & ETL Project
+🚀 **DATA MANAGEMENT ON ANALYSIS & TRANSFORMATION OF BUSINESS - CRITICAL DATA**
 
-## 📌 Project Overview
+📌 Project Overview
+This project focuses on designing and implementing end-to-end data integration and migration solutions for enterprise organisations transitioning from legacy or fragmented systems to Zoho One due to scalability limitations, system discontinuation risks, and the need for a unified business platform.
 
-This project focuses on designing and implementing an end-to-end SQL-based ETL pipeline to migrate customer and sales data from legacy systems into Zoho CRM while ensuring high data quality, consistency, and zero data loss.
+The solution involved building a robust SQL-based ETL pipeline to extract, cleanse, transform, validate, and migrate customer and sales data into Zoho CRM and connected Zoho applications, ensuring high data quality, consistency, and zero data loss across systems.1
 
-The solution includes data extraction, cleansing, transformation, validation, and integration across multiple Zoho applications to create a unified business reporting ecosystem.
-
----
-
-## 🎯 Objectives
+🎯 Objectives
 
 - Migrate customer and sales data from legacy systems to Zoho CRM.
 - Clean and standardize inconsistent data before migration.
@@ -18,7 +15,7 @@ The solution includes data extraction, cleansing, transformation, validation, an
 
 ---
 
-## 🛠️ Tech Stack
+🛠️ Tech Stack
 
 | Technology | Purpose |
 |------------|---------|
@@ -30,18 +27,16 @@ The solution includes data extraction, cleansing, transformation, validation, an
 | Zoho Desk | Customer Support Integration |
 | CSV Files | Migration Data Exchange |
 
----
 
-## 📊 Project Architecture
+📊 Project Architecture
 
-```text
 Legacy Database
       │
       ▼
 SQL Extraction
       │
       ▼
-Data Cleaning & Standardization
+Data Cleaning & Standardisation
       │
       ▼
 Schema Mapping
@@ -58,39 +53,37 @@ Zoho Analytics
       ├────────► Zoho Books
       │
       └────────► Zoho Desk
-```
 
----
 
-## ⚙️ ETL Workflow
+⚙️ ETL Workflow
 
-### 1. Data Extraction
+Data Extraction
 
 - Extracted customer and sales records from legacy databases using SQL.
 - Processed over **80,000+ records**.
 
-### 2. Data Cleansing
+2. Data Cleansing
 
 - Removed duplicate records.
-- Standardized customer information.
+- Standardised customer information.
 - Corrected inconsistent formats.
 - Handled missing values.
 - Validated mandatory fields.
 
-### 3. Data Transformation
+3. Data Transformation
 
 - Mapped legacy database schema to Zoho CRM modules.
 - Converted data into migration-ready CSV files.
-- Standardized date formats and lookup values.
+- Standardised date formats and lookup values.
 - Prepared relational data for seamless import.
 
-### 4. Data Migration
+ 4. Data Migration
 
 - Imported validated CSV files into Zoho CRM.
 - Ensured **zero data loss** during migration.
 - Maintained referential integrity between related entities.
 
-### 5. Data Validation
+5. Data Validation
 
 - Automated post-migration SQL validation.
 - Compared source and destination record counts.
@@ -98,9 +91,7 @@ Zoho Analytics
 - Checked duplicate records.
 - Validated business rules.
 
----
-
-## 🔄 Data Integration
+🔄 Data Integration
 
 Integrated the following Zoho applications:
 
@@ -116,9 +107,7 @@ This integration enabled:
 - Cross-functional analytics
 - Improved visibility for Sales and Operations teams
 
----
-
-## 📈 Key Achievements
+📈 Key Achievements
 
 - Successfully migrated **80,000+ customer and sales records**
 - Achieved **zero data loss** during migration
@@ -127,9 +116,7 @@ This integration enabled:
 - Improved migration accuracy through automated quality checks
 - Delivered consolidated dashboards using Zoho Analytics
 
----
-
-## ✅ Data Quality Checks
+✅ Data Quality Checks
 
 - Duplicate Detection
 - NULL Value Validation
@@ -140,11 +127,9 @@ This integration enabled:
 - Foreign Key Consistency
 - Schema Validation
 
----
+📂 Project Deliverables
 
-## 📂 Project Deliverables
-
-- SQL ETL Scripts
+- SQL Scripts
 - Data Cleansing Scripts
 - Data Mapping Documentation
 - Migration-ready CSV Files
@@ -152,9 +137,7 @@ This integration enabled:
 - Zoho Analytics Reports
 - Data Quality Reports
 
----
-
-## 📊 Business Impact
+📊 Business Impact
 
 - Streamlined customer data migration process.
 - Improved data accuracy and consistency.
@@ -162,12 +145,9 @@ This integration enabled:
 - Enabled unified reporting across Zoho applications.
 - Enhanced operational efficiency for sales and customer support teams.
 
----
-
-## 📚 Skills Demonstrated
+📚 Skills Demonstrated
 
 - SQL
-- ETL Pipeline Development
 - Data Migration
 - Data Cleansing
 - Data Transformation
@@ -180,10 +160,8 @@ This integration enabled:
 - CSV Data Processing
 - Reporting & Analytics
 
----
+👨‍💻 Author
 
-## 👨‍💻 Author
-
-**Munna Pandey**
+**Prashanth Kannan**
 
 Data Engineer | SQL | ETL | Data Migration | Cloud | Analytics
