@@ -41,15 +41,19 @@ SQL Extraction
 Data Cleaning & Standardisation
       │
       ▼
+      
 Schema Mapping
       │
       ▼
+      
 CSV Generation
       │
       ▼
+      
 Zoho CRM Migration
       │
       ▼
+      
 Zoho Analytics
       │
       ├────────► Zoho Books
