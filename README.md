@@ -15,7 +15,6 @@ The solution involved building a robust SQL-based ETL pipeline to extract, clean
 - Automate data quality validation and reporting.
 
 
-
 🛠️ **Tech Stack**
 
 | Technology | Purpose |
