@@ -47,20 +47,20 @@ The solution involved building a robust SQL-based ETL pipeline to extract, clean
 - Handled missing values.
 - Validated mandatory fields.
 
-3. Data Transformation
+**3. Data Transformation**
 
 - Mapped legacy database schema to Zoho CRM modules.
 - Converted data into migration-ready CSV files.
 - Standardised date formats and lookup values.
 - Prepared relational data for seamless import.
 
- 4. Data Migration
+ **4. Data Migration**
 
 - Imported validated CSV files into Zoho CRM.
 - Ensured **zero data loss** during migration.
 - Maintained referential integrity between related entities.
 
-5. Data Validation
+**5. Data Validation**
 
 - Automated post-migration SQL validation.
 - Compared source and destination record counts.
@@ -68,7 +68,7 @@ The solution involved building a robust SQL-based ETL pipeline to extract, clean
 - Checked duplicate records.
 - Validated business rules.
 
-🔄 Data Integration
+🔄 **Data Integration**
 
 Integrated the following Zoho applications:
 
@@ -84,7 +84,7 @@ This integration enabled:
 - Cross-functional analytics
 - Improved visibility for Sales and Operations teams
 
-📈 Key Achievements
+📈 **Key Achievements**
 
 - Successfully migrated **80,000+ customer and sales records**
 - Achieved **zero data loss** during migration
@@ -93,7 +93,7 @@ This integration enabled:
 - Improved migration accuracy through automated quality checks
 - Delivered consolidated dashboards using Zoho Analytics
 
-✅ Data Quality Checks
+✅ **Data Quality Checks**
 
 - Duplicate Detection
 - NULL Value Validation
@@ -104,7 +104,7 @@ This integration enabled:
 - Foreign Key Consistency
 - Schema Validation
 
-📂 Project Deliverables
+📂 **Project Deliverables**
 
 - SQL Scripts
 - Data Cleansing Scripts
@@ -114,7 +114,7 @@ This integration enabled:
 - Zoho Analytics Reports
 - Data Quality Reports
 
-📊 Business Impact
+📊** Business Impact**
 
 - Streamlined customer data migration process.
 - Improved data accuracy and consistency.
@@ -122,7 +122,7 @@ This integration enabled:
 - Enabled unified reporting across Zoho applications.
 - Enhanced operational efficiency for sales and customer support teams.
 
-📚 Skills Demonstrated
+📚 **Skills Demonstrated**
 
 - SQL
 - Data Migration
@@ -141,4 +141,4 @@ This integration enabled:
 
 **Prashanth Kannan**
 
-Data Engineer | SQL | ETL | Data Migration | Cloud | Analytics
+**Data Engineer | SQL | ETL | Data Migration | Cloud | Analytics**
