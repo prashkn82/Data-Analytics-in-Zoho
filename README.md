@@ -1,6 +1,6 @@
 🚀 **DATA MANAGEMENT ON ANALYSIS & TRANSFORMATION OF BUSINESS - CRITICAL DATA**
 
-📌 Project Overview
+📌 **Project Overview**
 This project focuses on designing and implementing end-to-end data integration and migration solutions for enterprise organisations transitioning from legacy or fragmented systems to Zoho One due to scalability limitations, system discontinuation risks, and the need for a unified business platform.
 
 The solution involved building a robust SQL-based ETL pipeline to extract, cleanse, transform, validate, and migrate customer and sales data into Zoho CRM and connected Zoho applications, ensuring high data quality, consistency, and zero data loss across systems.1
