@@ -1,5 +1,5 @@
 /* ============================================================
-   EXTRACT SCRIPTS – LEGACY DATABASE
+   **EXTRACT SCRIPTS – LEGACY DATABASE**
    Purpose: Extract raw data from legacy tables for ETL pipeline
    Author:  Prashanth
    ============================================================ */
