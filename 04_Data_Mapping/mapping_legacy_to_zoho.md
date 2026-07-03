@@ -1,499 +1,284 @@
-Mapping Legacy to Zoho
+# Mapping Legacy to Zoho
 
-1. Overview
+**Status:** Complete  
+**Last Updated:** January 2024  
+**Scope:** CRM, Books, Desk, and Analytics modules
 
-This document defines the complete field‑mapping strategy used to migrate data from legacy systems into Zoho CRM, Books, Desk, and Analytics. The mapping ensures that every legacy field is correctly aligned with its corresponding Zoho module and field, preserving business logic and relational integrity.
+---
 
-This mapping was created after analyzing legacy tables, cleansing rules, and Zoho module requirements.
+## Table of Contents
 
-2. Mapping Principles
+1. [Overview](#1-overview)
+2. [Mapping Principles](#2-mapping-principles)
+3. [Customer Module Mapping](#3-customer-module-mapping-zoho-crm)
+4. [Contact Module Mapping](#4-contact-module-mapping-zoho-crm)
+5. [Product Module Mapping](#5-product-module-mapping-zoho-crm--books)
+6. [Deals / Orders Mapping](#6-deals--orders-mapping-zoho-crm)
+7. [Order Items Mapping](#7-order-items-mapping-zoho-books)
+8. [Ticket Mapping](#8-ticket-mapping-zoho-desk)
+9. [Invoice Mapping](#9-invoice-mapping-zoho-books)
+10. [Payment Mapping](#10-payment-mapping-zoho-books)
+11. [Custom Fields Mapping](#11-custom-fields-mapping)
+12. [Mapping Validation Rules](#12-mapping-validation-rules)
+13. [Conclusion](#13-conclusion)
 
-2.1 Standardization Before Mapping
+---
+
+## 1. Overview
+
+This document defines the complete field-mapping strategy used to migrate data from legacy systems into **Zoho CRM, Books, Desk, and Analytics**.
+
+### Key Objectives
+
+- ✅ Ensure every legacy field maps correctly to Zoho fields
+- ✅ Maintain data integrity throughout transformation
+- ✅ Enable seamless functionality across all Zoho modules
+- ✅ Create audit trail for all mapping operations
+
+**Created after:** Analyzing legacy tables, cleansing rules, and Zoho module requirements
+
+---
+
+## 2. Mapping Principles
+
+### 2.1 Standardization Before Mapping
 
 All fields undergo cleansing and normalization before mapping:
 
-Uppercase names
+- **Names:** UPPERCASE
+- **Emails:** lowercase
+- **Dates:** ISO 8601 format (YYYY-MM-DD)
+- **Phone Numbers:** Numeric only (10-15 digits)
+- **Product SKUs:** Standardized format
 
-Lowercase emails
+### 2.2 One-to-One Mapping
 
-ISO date formats
+Direct field mapping where legacy fields match Zoho fields exactly.
 
-Numeric‑only phone numbers
+**Example:** `customer_id` → `Customer ID`
 
-Standardized product SKUs
+### 2.3 One-to-Many Mapping
 
-2.2 One‑to‑One Mapping
+Legacy fields split into multiple Zoho fields.
 
-Direct field mapping where legacy fields match Zoho fields.
+**Example:** Single phone field → Multiple phone type fields (Mobile, Office, Home)
 
-2.3 One‑to‑Many Mapping
+### 2.4 Many-to-One Mapping
 
-Legacy fields split into multiple Zoho fields (e.g., phone numbers).
+Multiple legacy fields combined into a single Zoho field.
 
-2.4 Many‑to‑One Mapping
+**Example:** `address_line_1` + `address_line_2` + `city` + `state` + `zip` → `Address`
 
-Multiple legacy fields combined into a single Zoho field (e.g., address components).
+### 2.5 Derived Fields
 
-2.5 Derived Fields
+Fields created using business logic rather than direct mapping.
 
-Fields created using business logic (e.g., status normalization).
+**Example:** Legacy `status` codes → Normalized Zoho `Stage` values
 
-3. Customer Module Mapping (Zoho CRM)
+---
 
-Legacy Field
+## 3. Customer Module Mapping (Zoho CRM)
 
-Zoho Field
+| Legacy Field | Zoho Field | Transformation Rules |
+|---|---|---|
+| `customer_id` | Customer ID | Primary key - preserved |
+| `first_name` | First Name | Convert to UPPERCASE |
+| `last_name` | Last Name | Convert to UPPERCASE |
+| `email` | Email | Lowercase, validate format |
+| `phone` | Phone | Extract numeric characters only (10-15 digits) |
+| `address` | Address | Clean special characters, standardize format |
+| `created_at` | Created Time | Convert to ISO 8601 format (YYYY-MM-DD) |
 
-Notes
+---
 
-customer_id
+## 4. Contact Module Mapping (Zoho CRM)
 
-Customer ID
+| Legacy Field | Zoho Field | Transformation Rules |
+|---|---|---|
+| `contact_id` | Contact ID | Primary key - preserved |
+| `customer_id` | Account Name | Foreign key → Link to Customers table |
+| `first_name` | First Name | Convert to UPPERCASE |
+| `last_name` | Last Name | Convert to UPPERCASE |
+| `email` | Email | Lowercase, validate format |
+| `phone` | Phone | Numeric only, cleaned |
+| `role` | Designation | Normalize job titles |
+| `is_primary` | Primary Contact | Convert to Boolean (True/False) |
 
-Primary key
+---
 
-first_name
+## 5. Product Module Mapping (Zoho CRM / Books)
 
-First Name
+| Legacy Field | Zoho Field | Transformation Rules |
+|---|---|---|
+| `product_id` | Product ID | Primary key - preserved |
+| `product_name` | Product Name | Convert to UPPERCASE |
+| `category` | Category | Standardize category codes |
+| `sku` | SKU | Normalize format (uppercase, remove spaces) |
+| `price_ht` | Price (HT) | Convert to DECIMAL(10,2) |
+| `price_ttc` | Price (TTC) | Convert to DECIMAL(10,2) |
+| `tax_code` | Tax Code | Map to Zoho tax rules |
 
-Uppercase
+---
 
-last_name
+## 6. Deals / Orders Mapping (Zoho CRM)
 
-Last Name
+| Legacy Field | Zoho Field | Transformation Rules |
+|---|---|---|
+| `order_id` | Deal ID | Primary key - preserved |
+| `customer_id` | Account Name | Foreign key → Link to Customers table |
+| `order_date` | Closing Date | Convert to ISO 8601 format |
+| `status` | Stage | Normalize: PENDING → New, ACTIVE → In Progress, COMPLETED → Closed Won, CANCELLED → Closed Lost |
+| `total_ht` | Amount (HT) | Convert to DECIMAL(10,2) |
+| `total_ttc` | Amount (TTC) | Convert to DECIMAL(10,2) |
+| `payment_mode` | Payment Mode | Standardize: Cash, Credit Card, Bank Transfer, Cheque, etc. |
 
-Uppercase
+---
 
-email
+## 7. Order Items Mapping (Zoho Books)
 
-Email
+| Legacy Field | Zoho Field | Transformation Rules |
+|---|---|---|
+| `order_item_id` | Line Item ID | Primary key - preserved |
+| `order_id` | Invoice / Order Reference | Foreign key → Link to Orders table |
+| `product_id` | Item Name | Foreign key → Link to Products table |
+| `quantity` | Quantity | Convert to numeric, validate > 0 |
+| `unit_price_ht` | Rate (HT) | Convert to DECIMAL(10,2) |
+| `unit_price_ttc` | Rate (TTC) | Convert to DECIMAL(10,2) |
+| `discount` | Discount | Convert to numeric, validate ≥ 0 |
 
-Lowercase, validated
+---
 
-phone
+## 8. Ticket Mapping (Zoho Desk)
 
-Phone
+| Legacy Field | Zoho Field | Transformation Rules |
+|---|---|---|
+| `ticket_id` | Ticket ID | Primary key - preserved |
+| `customer_id` | Contact / Account | Foreign key → Link to Customers table |
+| `subject` | Subject | Clean HTML tags, trim whitespace |
+| `category` | Category | Normalize categories (Bug, Feature Request, Support, etc.) |
+| `status` | Status | Map to Zoho values: OPEN, CLOSED, PENDING |
+| `priority` | Priority | Standardize: LOW, MEDIUM, HIGH, URGENT |
+| `created_at` | Created Time | Convert to ISO 8601 format |
+| `closed_at` | Closed Time | Convert to ISO 8601 format (NULL if open) |
 
-Numeric only
+---
 
-address
+## 9. Invoice Mapping (Zoho Books)
 
-Address
+| Legacy Field | Zoho Field | Transformation Rules |
+|---|---|---|
+| `invoice_id` | Invoice ID | Primary key - preserved |
+| `customer_id` | Customer Name | Foreign key → Link to Customers table |
+| `invoice_date` | Invoice Date | Convert to ISO 8601 format |
+| `amount` | Total Amount | Convert to DECIMAL(10,2) |
+| `payment_status` | Payment Status | Normalize: PENDING, PAID, PARTIAL, OVERDUE |
 
-Cleaned & standardized
+---
 
-created_at
+## 10. Payment Mapping (Zoho Books)
 
-Created Time
+| Legacy Field | Zoho Field | Transformation Rules |
+|---|---|---|
+| `payment_id` | Payment ID | Primary key - preserved |
+| `customer_id` | Customer Name | Foreign key → Link to Customers table |
+| `amount` | Amount | Convert to DECIMAL(10,2) |
+| `payment_mode` | Payment Mode | Standardize: Cash, Credit Card, Bank Transfer, Cheque |
+| `payment_date` | Payment Date | Convert to ISO 8601 format |
+| `reference_number` | Reference Number | Clean special characters, remove whitespace |
 
-ISO format
+---
 
-4. Contact Module Mapping (Zoho CRM)
+## 11. Custom Fields Mapping
 
-Legacy Field
+### 11.1 Longtext → Structured Fields
 
-Zoho Field
+When migrating unstructured text fields:
 
-Notes
+1. **Remove HTML tags:** Strip `<p>`, `<br>`, `<div>`, etc.
+2. **Normalize UTF-8:** Convert accented characters to ASCII equivalents
+3. **Extract key-value pairs:** Parse structured content within text
+4. **Map to Zoho custom fields:** Assign to appropriate custom field type
 
-contact_id
+### 11.2 Derived Custom Fields
 
-Contact ID
+New fields created using business logic:
 
-Primary key
+| Legacy Source | Zoho Derived Field | Logic |
+|---|---|---|
+| `status` field | Stage | Normalize status codes to Zoho stage pipeline |
+| `category` field | Category | Map category IDs to category names |
+| Multiple flag fields | Boolean fields | Combine multiple binary flags into structured Boolean fields |
 
-customer_id
+---
 
-Account Name
+## 12. Mapping Validation Rules
 
-FK → Customers
+### 12.1 Referential Integrity
 
-first_name
+Before migration, all relationships must be valid:
 
-First Name
+- ✅ All orders **must reference valid customers**
+- ✅ All order items **must reference valid products**
+- ✅ All order items **must reference valid orders**
+- ✅ All tickets **must reference valid customers**
+- ✅ All invoices **must reference valid customers**
+- ✅ **No orphan records** are permitted
 
-Uppercase
+### 12.2 Mandatory Fields
 
-last_name
+The following fields **cannot be NULL** in target systems:
 
-Last Name
+| Module | Mandatory Fields |
+|---|---|
+| **Customer** | Email, Phone |
+| **Product** | Product Name, SKU |
+| **Order** | Order Date, Customer ID |
+| **Ticket** | Subject, Customer ID |
+| **Invoice** | Invoice Date, Customer ID, Amount |
 
-Uppercase
+### 12.3 Format Validation
 
-email
+All mapped fields must conform to Zoho field requirements:
 
-Email
+- **Email:** Matches regex `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
+- **Phone:** Numeric only, 10-15 digits
+- **Dates:** ISO 8601 format (YYYY-MM-DD), valid calendar dates
+- **Amounts:** DECIMAL(10,2), no currency symbols
+- **Boolean:** True/False or 1/0 only
 
-Lowercase
+---
 
-phone
+## 13. Conclusion
 
-Phone
+### Mapping Guarantees
 
-Cleaned
+✅ **Zero data loss** — All records mapped with audit trail  
+✅ **Accurate field alignment** — Each legacy field correctly mapped to Zoho  
+✅ **Clean relational structure** — All foreign keys validated  
+✅ **Seamless functionality** — Data immediately usable in Zoho modules  
 
-role
+### Pre-Migration Checklist
 
-Designation
+- [ ] All mandatory fields validated as non-NULL
+- [ ] All foreign key relationships verified
+- [ ] All date formats converted to ISO 8601
+- [ ] All email addresses validated
+- [ ] All phone numbers standardized (numeric only)
+- [ ] All product SKUs unique and normalized
+- [ ] Data quality score ≥ 98%
+- [ ] Error logs reviewed and resolved
+- [ ] Stakeholder sign-off obtained
 
-Normalized
+### Master Reference
 
-is_primary
+This document serves as the **master reference for all mapping operations** in the ETL workflow. All field transformations, cleansing rules, and validation logic are defined here.
 
-Primary Contact
+---
 
-Boolean
-
-5. Product Module Mapping (Zoho CRM / Books)
-
-Legacy Field
-
-Zoho Field
-
-Notes
-
-product_id
-
-Product ID
-
-Primary key
-
-product_name
-
-Product Name
-
-Uppercase
-
-category
-
-Category
-
-Standardized
-
-sku
-
-SKU
-
-Normalized
-
-price_ht
-
-Price (HT)
-
-Decimal
-
-price_ttc
-
-Price (TTC)
-
-Decimal
-
-tax_code
-
-Tax Code
-
-Mapped to Zoho tax rules
-
-6. Deals / Orders Mapping (Zoho CRM)
-
-Legacy Field
-
-Zoho Field
-
-Notes
-
-order_id
-
-Deal ID
-
-Primary key
-
-customer_id
-
-Account Name
-
-FK → Customers
-
-order_date
-
-Closing Date
-
-ISO format
-
-status
-
-Stage
-
-Normalized
-
-total_ht
-
-Amount (HT)
-
-Decimal
-
-total_ttc
-
-Amount (TTC)
-
-Decimal
-
-payment_mode
-
-Payment Mode
-
-Standardized
-
-7. Order Items Mapping (Zoho Books)
-
-Legacy Field
-
-Zoho Field
-
-Notes
-
-order_item_id
-
-Line Item ID
-
-Primary key
-
-order_id
-
-Invoice / Order Reference
-
-FK
-
-product_id
-
-Item Name
-
-FK → Products
-
-quantity
-
-Quantity
-
-Numeric
-
-unit_price_ht
-
-Rate (HT)
-
-Decimal
-
-unit_price_ttc
-
-Rate (TTC)
-
-Decimal
-
-discount
-
-Discount
-
-Numeric
-
-8. Ticket Mapping (Zoho Desk)
-
-Legacy Field
-
-Zoho Field
-
-Notes
-
-ticket_id
-
-Ticket ID
-
-Primary key
-
-customer_id
-
-Contact / Account
-
-FK
-
-subject
-
-Subject
-
-Cleaned
-
-category
-
-Category
-
-Normalized
-
-status
-
-Status
-
-OPEN / CLOSED / PENDING
-
-priority
-
-Priority
-
-Standardized
-
-created_at
-
-Created Time
-
-ISO format
-
-closed_at
-
-Closed Time
-
-ISO format
-
-9. Invoice Mapping (Zoho Books)
-
-Legacy Field
-
-Zoho Field
-
-Notes
-
-invoice_id
-
-Invoice ID
-
-Primary key
-
-customer_id
-
-Customer Name
-
-FK
-
-invoice_date
-
-Invoice Date
-
-ISO format
-
-amount
-
-Total Amount
-
-Decimal
-
-payment_status
-
-Payment Status
-
-Normalized
-
-10. Payment Mapping (Zoho Books)
-
-Legacy Field
-
-Zoho Field
-
-Notes
-
-payment_id
-
-Payment ID
-
-Primary key
-
-customer_id
-
-Customer Name
-
-FK
-
-amount
-
-Amount
-
-Decimal
-
-payment_mode
-
-Payment Mode
-
-Standardized
-
-payment_date
-
-Payment Date
-
-ISO format
-
-reference_number
-
-Reference Number
-
-Cleaned
-
-11. Custom Fields Mapping
-
-11.1 Longtext → Structured Fields
-
-Remove HTML tags
-
-Normalize UTF‑8
-
-Extract key‑value pairs
-
-Map to Zoho custom fields
-
-11.2 Derived Custom Fields
-
-Examples:
-
-Legacy status → Zoho Stage
-
-Legacy category → Zoho Category
-
-Legacy flags → Boolean fields
-
-12. Mapping Validation Rules
-
-12.1 Referential Integrity
-
-All orders must reference valid customers
-
-All order items must reference valid products
-
-All tickets must reference valid customers
-
-12.2 Mandatory Fields
-
-Email
-
-Phone
-
-Product name
-
-Order date
-
-Ticket subject
-
-12.3 Format Validation
-
-Email format
-
-Numeric phone
-
-Valid dates
-
-13. Conclusion
-
-This mapping ensures that all legacy data is accurately aligned with Zoho CRM, Books, Desk, and Analytics. By applying standardized rules, cleansing logic, and relationship reconstruction, the migration achieves:
-
-Zero data loss
-
-Accurate field alignment
-
-Clean relational structure
-
-Seamless functionality across Zoho modules
-
-This document serves as the master reference for all mapping operations in the ETL workflow.
+**Document Owner:** Data Migration Team  
+**Last Validated:** January 2024  
+**Next Review:** Post-migration audit  
+**Related Documents:**
+- `03_Data_Cleansing/cleansing_report.md`
+- ETL Error Logs
+- Zoho Module Configuration Guide
