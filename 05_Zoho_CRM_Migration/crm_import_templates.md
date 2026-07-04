@@ -1,6 +1,20 @@
 # CRM Import Templates
 
-## Overview
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Accounts Import Template](#1-accounts-import-template-customers)
+3. [Contacts Import Template](#2-contacts-import-template)
+4. [Deals Import Template](#3-deals-import-template-orders)
+5. [Products Import Template](#4-products-import-template)
+6. [Tickets Import Template](#5-tickets-import-template-zoho-desk--crm-sync)
+7. [Custom Fields Import Template](#6-custom-fields-import-template)
+8. [Validation Rules](#7-validation-rules)
+9. [Conclusion](#conclusion)
+
+---
+
+## Overview {#overview}
 
 This document provides standardised templates for importing data into Zoho CRM. These templates ensure consistent formatting, accurate field mapping, and error-free migration during the ETL process.
 
@@ -8,7 +22,7 @@ Each template corresponds to a major CRM module and includes required fields, op
 
 ---
 
-## 1. Accounts Import Template (Customers)
+## 1. Accounts Import Template (Customers) {#1-accounts-import-template-customers}
 
 ### Required Fields
 
@@ -37,7 +51,7 @@ ABC CORPORATION,1001,9876543210,info@abc.com,"123 Main St","123 Main St",Manufac
 
 ---
 
-## 2. Contacts Import Template
+## 2. Contacts Import Template {#2-contacts-import-template}
 
 ### Required Fields
 
@@ -67,7 +81,7 @@ Contact_ID,First_Name,Last_Name,Email,Phone,Mobile,Department,Title,Account_Name
 
 ---
 
-## 3. Deals Import Template (Orders)
+## 3. Deals Import Template (Orders) {#3-deals-import-template-orders}
 
 ### Required Fields
 
@@ -96,7 +110,7 @@ Deal_ID,Deal_Name,Account_Name,Stage,Closing_Date,Amount,Probability,Description
 
 ---
 
-## 4. Products Import Template
+## 4. Products Import Template {#4-products-import-template}
 
 ### Required Fields
 
@@ -124,7 +138,7 @@ Product_ID,Product_Name,SKU,Category,Price_HT,Price_TTC,Tax_Code
 
 ---
 
-## 5. Tickets Import Template (Zoho Desk → CRM Sync)
+## 5. Tickets Import Template (Zoho Desk → CRM Sync) {#5-tickets-import-template-zoho-desk--crm-sync}
 
 ### Required Fields
 
@@ -153,7 +167,7 @@ Ticket_ID,Subject,Status,Priority,Category,Created_Time,Closed_Time,Contact_Name
 
 ---
 
-## 6. Custom Fields Import Template
+## 6. Custom Fields Import Template {#6-custom-fields-import-template}
 
 ### Required Fields
 
@@ -178,7 +192,7 @@ LEG-001,Synced,"Imported successfully","{\"flag\":true}"
 
 ---
 
-## 7. Validation Rules
+## 7. Validation Rules {#7-validation-rules}
 
 ### 7.1 Mandatory Field Rules
 
@@ -201,7 +215,7 @@ LEG-001,Synced,"Imported successfully","{\"flag\":true}"
 
 ---
 
-## Conclusion
+## Conclusion {#conclusion}
 
 These CRM import templates ensure clean, consistent, and error-free data migration into Zoho CRM. They serve as the foundation for bulk imports, ETL workflows, and automated sync processes.
 
