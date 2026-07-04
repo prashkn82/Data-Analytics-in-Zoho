@@ -1,385 +1,443 @@
-Dashboard Documentation
+# 📊 Dashboard Documentation
 
-1. Overview
+**Version:** 1.0  
+**Last Updated:** 2024  
+**Status:** Active
 
-This document explains the structure, metrics, data sources, and functional behavior of the dashboards built in Zoho Analytics for the migration project. These dashboards provide unified visibility across CRM, Books, Desk, and operational datasets.
+---
 
-The goal is to ensure stakeholders can monitor sales, finance, support, and customer performance using clean, validated, and reconciled data.
+## Table of Contents
+1. [Overview](#overview)
+2. [Dashboard Architecture](#dashboard-architecture)
+3. [Sales Dashboard](#sales-dashboard)
+4. [Finance Dashboard](#finance-dashboard)
+5. [Support Dashboard](#support-dashboard)
+6. [Customer 360 Dashboard](#customer-360-dashboard)
+7. [Product Performance Dashboard](#product-performance-dashboard)
+8. [KPI Definitions](#kpi-definitions)
+9. [Dashboard Validation](#dashboard-validation)
+10. [Implementation & Operations](#implementation--operations)
+11. [Appendix](#appendix)
 
-2. Dashboard Architecture
+---
 
-2.1 Data Sources
+## Overview
 
-Zoho CRM (Accounts, Contacts, Deals)
+This document describes the structure, metrics, data sources, and functional behavior of the dashboards built in **Zoho Analytics** for the migration project.
 
-Zoho Books (Invoices, Payments, Products)
+### 🎯 Goal
+Ensure stakeholders can monitor sales, finance, support, and customer performance using clean, validated, and reconciled data.
 
-Zoho Desk (Tickets)
+### 📈 Available Dashboards
+| Dashboard | Purpose |
+|-----------|---------|
+| **Sales Dashboard** | Track revenue, pipeline health, and sales trends |
+| **Finance Dashboard** | Monitor invoices, payments, and financial metrics |
+| **Support Dashboard** | Track ticket volume and agent performance |
+| **Customer 360 Dashboard** | Unified customer view across all touchpoints |
+| **Product Performance Dashboard** | Analyze product sales and revenue contribution |
 
-Custom ETL Staging Tables
+---
 
-Derived KPI Tables
+## Dashboard Architecture
 
-2.2 Data Refresh Frequency
+### 2.1 Data Sources
 
-CRM: Hourly
+```
+Zoho CRM
+├── Accounts
+├── Contacts
+└── Deals
 
-Books: Hourly
+Zoho Books
+├── Invoices
+├── Payments
+└── Products
 
-Desk: Hourly
+Zoho Desk
+└── Tickets
 
-Analytics Warehouse: Daily
+Custom Layer
+├── ETL Staging Tables
+└── Derived KPI Tables
+```
 
-2.3 Dashboard Categories
+### 2.2 Data Refresh Frequency
 
-Sales Dashboard
+| Data Source | Refresh Interval | Notes |
+|---|---|---|
+| Zoho CRM | Hourly | Real-time deal updates |
+| Zoho Books | Hourly | Invoice and payment tracking |
+| Zoho Desk | Hourly | Support ticket sync |
+| Analytics Warehouse | Daily | Aggregated KPI tables |
 
-Finance Dashboard
+> ⚠️ **Note:** Review refresh frequencies periodically to balance data freshness with API quota limits and performance impact.
 
-Support Dashboard
+---
 
-Customer 360 Dashboard
+## Sales Dashboard
 
-Product Performance Dashboard
+### Purpose
+Track revenue, pipeline health, product performance, and sales trends across the organization.
 
-📊 Dashboards for Each Category
+### Key Metrics (KPI Bar)
+- **Total Sales** (MTD, QTD, YTD options)
+- **Win Rate %** (conversion metric)
+- **Average Deal Size** (trend indicator)
+- **Pipeline Value** (forecast metric)
 
-3. Sales Dashboard
+### Visual Components
 
-Purpose
+| Chart | Type | Purpose |
+|-------|------|---------|
+| Monthly Sales Trend | Line Chart | Visualize sales progression over time |
+| Pipeline Breakdown | Funnel Chart | Show deal progression through stages |
+| Top Products by Revenue | Horizontal Bar | Identify top-performing products |
+| Win/Loss Analysis | Pie Chart | Show sales conversion rates |
+| Sales by Region | Map Chart | Geographic performance view |
 
-Track revenue, pipeline health, product performance, and sales trends.
+### Interactive Features
+- **Filters:** Date Range, Salesperson, Region, Product Category, Deal Stage
+- **Tables:** Deal List with drill-down, Salesperson Performance Leaderboard
+- **Drill-Down:** Click on region/product to see underlying deals
 
-Dashboard Snapshot
+### Data Sources
+- Deals table
+- Accounts table
+- Products table
+- Salesperson dimension table
 
-Top KPI Bar
+---
 
-Total Sales (MTD, QTD, YTD)
+## Finance Dashboard
 
-Win Rate %
-
-Average Deal Size
-
-Pipeline Value
-
-Charts
-
-Monthly Sales Trend — Line Chart
-
-Pipeline Breakdown — Funnel
-
-Top Products by Revenue — Horizontal Bar
-
-Win/Loss Analysis — Pie Chart
-
-Sales by Region — Map Chart
-
-Tables
-
-Deal List with filters
-
-Salesperson Performance Leaderboard
-
-Filters
-
-Date Range
-
-Salesperson
-
-Region
-
-Product Category
-
-Deal Stage
-
-Data Sources
-
-Deals
-
-Accounts
-
-Products
-
-Salesperson table
-
-4. Finance Dashboard
-
-Purpose
-
+### Purpose
 Monitor invoices, payments, outstanding amounts, tax summaries, and revenue trends.
 
-Dashboard Snapshot
+### Key Metrics (KPI Bar)
+- **Total Invoices** (count and amount)
+- **Total Payments** (received)
+- **Outstanding Amount** (aging)
+- **Tax Collected** (compliance tracking)
 
-Top KPI Bar
+### Visual Components
 
-Total Invoices
+| Chart | Type | Purpose |
+|-------|------|---------|
+| Invoice Trend | Line Chart | Track invoice volume and value |
+| Payment Collection Trend | Bar Chart | Monitor payment patterns |
+| Outstanding Amount Breakdown | Stacked Bar | Analyze aging buckets |
+| Revenue by Category | Pie Chart | Show revenue distribution |
+| Tax Summary | Donut Chart | Tax liability overview |
 
-Total Payments
+### Interactive Features
+- **Filters:** Date Range, Customer, Product Category, Payment Mode, Invoice Status
+- **Tables:** Invoice Aging Report, Payment Ledger, Customer Outstanding Summary
+- **Alerts:** Overdue invoice highlights and payment deadline warnings
 
-Outstanding Amount
+### Data Sources
+- Invoices table
+- Payments table
+- Products table
+- Tax configuration table
 
-Tax Collected
+---
 
-Charts
+## Support Dashboard
 
-Invoice Trend — Line Chart
-
-Payment Collection Trend — Bar Chart
-
-Outstanding Amount Breakdown — Stacked Bar
-
-Revenue by Category — Pie Chart
-
-Tax Summary — Donut Chart
-
-Tables
-
-Invoice Aging Report
-
-Payment Ledger
-
-Customer Outstanding Summary
-
-Filters
-
-Date Range
-
-Customer
-
-Product Category
-
-Payment Mode
-
-Invoice Status
-
-Data Sources
-
-Invoices
-
-Payments
-
-Products
-
-Tax Table
-
-5. Support Dashboard
-
-Purpose
-
+### Purpose
 Track ticket volume, resolution efficiency, agent performance, and customer support load.
 
-Dashboard Snapshot
-
-Top KPI Bar
-
-Total Tickets
-
-Avg Resolution Time
-
-Open Tickets
-
-SLA Breaches
-
-Charts
-
-Ticket Status Distribution — Pie Chart
-
-Priority Breakdown — Bar Chart
-
-Resolution Time Trend — Line Chart
-
-Agent Performance — Leaderboard
-
-Tickets by Category — Treemap
-
-Tables
-
-Ticket List with SLA indicators
-
-Agent Workload Summary
-
-Filters
-
-Date Range
-
-Agent
-
-Priority
-
-Category
-
-Status
-
-Data Sources
-
-Tickets
-
-Contacts
-
-Agents
-
-SLA configuration table
-
-6. Customer 360 Dashboard
-
-Purpose
-
-Provide a unified view of customer revenue, support load, lifetime value, and engagement.
-
-Dashboard Snapshot
-
-Top KPI Bar
-
-Lifetime Value
-
-Total Revenue
-
-Total Tickets
-
-Average Ticket Resolution Time
-
-Charts
-
-Customer Revenue — Bar Chart
-
-Customer Support Load — Heatmap
-
-Lifetime Value Trend — Line Chart
-
-Customer Category Distribution — Pie Chart
-
-Tables
-
-Customer Profile Summary
-
-Customer Interaction Timeline
-
-Filters
-
-Customer
-
-Region
-
-Category
-
-Revenue Range
-
-Data Sources
-
-Accounts
-
-Deals
-
-Tickets
-
-Invoices
-
-7. Product Performance Dashboard
-
-Purpose
-
-Analyze product sales, revenue contribution, category performance, and top sellers.
-
-Dashboard Snapshot
-
-Top KPI Bar
-
-Total Product Revenue
-
-Total Units Sold
-
-Top Product
-
-Category Contribution %
-
-Charts
-
-Sales Volume Trend — Line Chart
-
-Revenue by Product — Bar Chart
-
-Category Performance — Pie Chart
-
-Top 10 Products — Leaderboard
-
-Tables
-
-Product Sales Summary
-
-Category Breakdown Table
-
-Filters
-
-Product
-
-Category
-
-Date Range
-
-Region
-
-Data Sources
-
-Products
-
-Deals
-
-Order Items
-
-8. KPI Definitions
-
-8.1 Sales KPIs
-
+### Key Metrics (KPI Bar)
+- **Total Tickets** (open and closed)
+- **Avg Resolution Time** (SLA metric)
+- **Open Tickets** (current backlog)
+- **SLA Breaches** (compliance indicator)
+
+### Visual Components
+
+| Chart | Type | Purpose |
+|-------|------|---------|
+| Ticket Status Distribution | Pie Chart | Show ticket lifecycle status |
+| Priority Breakdown | Bar Chart | Visualize priority distribution |
+| Resolution Time Trend | Line Chart | Track performance over time |
+| Agent Performance | Leaderboard | Compare agent metrics |
+| Tickets by Category | Treemap | Show issue types |
+
+### Interactive Features
+- **Filters:** Date Range, Agent, Priority, Category, Status
+- **Tables:** Ticket List with SLA indicators, Agent Workload Summary
+- **Drill-Down:** Click agent name to see their ticket details
+- **Color Coding:** Red for SLA breaches, green for on-time
+
+### Data Sources
+- Tickets table
+- Contacts table
+- Agents dimension
+- SLA configuration table
+
+---
+
+## Customer 360 Dashboard
+
+### Purpose
+Provide a unified view of customer revenue, support load, lifetime value, and engagement patterns.
+
+### Key Metrics (KPI Bar)
+- **Lifetime Value (LTV)** (cumulative revenue)
+- **Total Revenue** (account-level)
+- **Total Tickets** (support interactions)
+- **Avg Ticket Resolution Time** (support quality)
+
+### Visual Components
+
+| Chart | Type | Purpose |
+|-------|------|---------|
+| Customer Revenue | Bar Chart | Rank customers by revenue |
+| Customer Support Load | Heatmap | Identify high-touch accounts |
+| Lifetime Value Trend | Line Chart | Show customer growth trajectory |
+| Customer Category Distribution | Pie Chart | Segment by customer type |
+
+### Interactive Features
+- **Filters:** Customer, Region, Category, Revenue Range
+- **Tables:** Customer Profile Summary, Customer Interaction Timeline
+- **Drill-Down:** Click customer to see related deals, invoices, and tickets
+- **Search:** Full-text search for customer name/ID
+
+### Data Sources
+- Accounts table (customers)
+- Deals table (revenue)
+- Tickets table (support)
+- Invoices table (payment history)
+
+---
+
+## Product Performance Dashboard
+
+### Purpose
+Analyze product sales, revenue contribution, category performance, and identify top sellers.
+
+### Key Metrics (KPI Bar)
+- **Total Product Revenue** (sum across all products)
+- **Total Units Sold** (volume metric)
+- **Top Product** (by revenue)
+- **Category Contribution %** (top category)
+
+### Visual Components
+
+| Chart | Type | Purpose |
+|-------|------|---------|
+| Sales Volume Trend | Line Chart | Track units sold over time |
+| Revenue by Product | Bar Chart | Rank products by revenue |
+| Category Performance | Pie Chart | Show category contribution |
+| Top 10 Products | Leaderboard | Quick reference for top sellers |
+
+### Interactive Features
+- **Filters:** Product, Category, Date Range, Region
+- **Tables:** Product Sales Summary, Category Breakdown Table
+- **Drill-Down:** Click product to see related deals and customers
+
+### Data Sources
+- Products table
+- Deals table
+- Order Items table
+- Regional mapping table
+
+---
+
+## KPI Definitions
+
+### 8.1 Sales KPIs
+
+```
 Total Sales = SUM(Deal Amount)
+              where Deal Status = "Won"
 
-Win Rate = Won Deals / Total Deals
+Win Rate = COUNT(Won Deals) / COUNT(Total Deals)
+           × 100
 
-Average Deal Size = Total Sales / Number of Deals
+Average Deal Size = SUM(Deal Amount) / COUNT(Deals)
+```
 
-8.2 Finance KPIs
+### 8.2 Finance KPIs
 
-Outstanding Amount = Total Invoices − Total Payments
+```
+Outstanding Amount = SUM(Invoice Amount) - SUM(Payment Amount)
 
 Tax Summary = SUM(Tax Amount)
+              by Tax Category
 
-8.3 Support KPIs
+Revenue by Category = SUM(Amount) 
+                      grouped by Product Category
+```
 
-Average Resolution Time = AVG(Closed_Time − Created_Time)
+### 8.3 Support KPIs
 
-Ticket Load = Tickets per Customer
+```
+Average Resolution Time = AVG(Closed_Time - Created_Time)
+                           (in hours or days)
 
-8.4 Customer KPIs
+Ticket Load = COUNT(Tickets) / COUNT(Customers)
+              (per customer ratio)
 
-Lifetime Value = Total Revenue per Customer
+SLA Compliance = COUNT(On-Time Tickets) / COUNT(Total Tickets)
+                 × 100
+```
 
-9. Dashboard Validation
+### 8.4 Customer KPIs
 
-9.1 Data Accuracy Checks
+```
+Lifetime Value (LTV) = SUM(Revenue per Customer)
+                       over chosen period
+                       (MTD / QTD / YTD)
 
-Validate totals against reconciliation report
+Customer Engagement Score = Function of:
+  • Number of deals
+  • Total revenue
+  • Support interactions
+  • Contract value
+```
 
-Validate counts against CRM/Books/Desk
+---
 
-Validate date formats
+## Dashboard Validation
 
-9.2 Functional Checks
+### 9.1 Data Accuracy Checks ✅
 
-Filter behavior
+- [ ] Validate dashboard totals against reconciliation report (record counts and financial totals)
+- [ ] Validate row counts against source systems (CRM, Books, Desk)
+- [ ] Verify date format compliance (ISO: `YYYY-MM-DD`)
+- [ ] Verify currency format (decimals to 2 places minimum)
+- [ ] Ensure ETL staging tables include audit fields:
+  - `source_id` — original PK from source
+  - `source_updated_at` — source timestamp
+  - `etl_run_id` — ETL execution ID
+  - `etl_status` — success/skipped/corrected
 
-Drill‑down functionality
+### 9.2 Functional Checks ✅
 
-Cross‑module linking
+- [ ] Filter behavior — verify filters apply across all charts consistently
+- [ ] Drill-down functionality — ensure drill paths return correct records
+- [ ] Cross-module linking — verify account → deal → invoice → ticket paths work
+- [ ] Null value handling — confirm missing data is displayed appropriately
 
-9.3 Performance Checks
+### 9.3 Performance Checks ⚡
 
-Dashboard load time
+- [ ] Dashboard load time — target **< 5 seconds** for key views
+- [ ] Query optimization — add indexes where needed
+- [ ] Cache refresh validation — verify cache invalidation aligns with data refresh
+- [ ] Monitor concurrent user load
 
-Query optimization
+### 9.4 Evidence & Test Artifacts 📋
 
-Cache refresh validation
+Maintain a **validation log** with:
+- Test case ID
+- Expected result
+- Observed result
+- Tester name
+- Timestamp
+- Screenshots/snapshots
 
-10. Conclusion
+---
 
-These dashboards provide complete visibility across sales, finance, support, and customer operations. They are built on validated, reconciled data and serve as the primary reporting layer for business stakeholders.
+## Implementation & Operations
 
-This documentation ensures clarity, consistency, and maintainability for all dashboard components.
+### Access Control
+- ✋ Restrict dashboard **editing** to analytics team leads only
+- 👁️ Restrict sensitive KPIs (revenue, costs) by role
+- 🔐 Enforce row-level security for customer/region data
+
+### Data Governance
+- 📋 Document data lineage for each KPI
+  - Source fields
+  - Transformation logic
+  - Aggregation rules
+- 🏷️ Tag dashboards by confidentiality level (Public / Internal / Restricted)
+
+### Error Handling & Monitoring
+- 🚨 Alert on ETL failures (email/Slack/Teams)
+- 📊 Link alerts to `etl_error_log` table
+- 📈 Monitor dashboard load times and query performance
+
+### Backups & Retention
+- 💾 Retain ETL logs for **30 days** minimum
+- 📦 Archive raw extracts per retention policy
+- 🔄 Weekly backup of Zoho Analytics workspace configuration
+
+---
+
+## Appendix
+
+### 11.1 Recommended ETL Audit Fields
+
+| Field | Type | Purpose |
+|-------|------|---------|
+| `source_id` | VARCHAR | Original PK from source system |
+| `etl_run_id` | VARCHAR | Unique ETL execution identifier |
+| `source_updated_at` | TIMESTAMP | Last update time in source |
+| `loaded_at` | TIMESTAMP | Load time into warehouse |
+| `etl_status` | VARCHAR | success / skipped / corrected |
+| `correction_reason` | VARCHAR | Notes on any corrections applied |
+
+### 11.2 Validation Checklist (Sample)
+
+1. **Record Count Reconciliation**
+   - [ ] Compare CRM deal count with dashboard
+   - [ ] Compare Books invoice count with dashboard
+   - [ ] Compare Desk ticket count with dashboard
+
+2. **Financial Validation**
+   - [ ] Validate top 10 invoices by amount
+   - [ ] Reconcile total revenue (Deals vs. Books)
+   - [ ] Compare outstanding amounts with aging report
+
+3. **Sample Testing**
+   - [ ] Select 50 random deals
+   - [ ] Verify related account and invoice links
+   - [ ] Check all drill-down paths from each dashboard
+
+4. **User Acceptance**
+   - [ ] Test filter interactions for each dashboard
+   - [ ] Verify drill-down returns expected records
+   - [ ] Confirm KPI calculations match business rules
+
+### 11.3 Common Issues & Solutions
+
+| Issue | Solution |
+|-------|----------|
+| Dashboard loads slowly | Add pre-aggregated staging table; check query complexity |
+| Filters not applying | Verify join relationships; test filter column names |
+| Mismatched totals | Check ETL deduplication logic; review null handling |
+| Outdated data | Verify ETL scheduler is running; check API quotas |
+
+### 11.4 Useful Resources
+
+- [Zoho Analytics Documentation](https://www.zoho.com/analytics/)
+- [ETL Configuration Guide](../05_ETL_Implementation/) (if available in repo)
+- **Contact:** Analytics Team Lead for dashboard access and support
+
+---
+
+## Conclusion
+
+These dashboards provide **consolidated visibility** across sales, finance, support, and customer operations. They are built on validated, reconciled data and serve as the primary reporting layer for business intelligence.
+
+### Before Production Release
+✅ Complete the full validation checklist (Section 9)  
+✅ Obtain stakeholder sign-off  
+✅ Document any customizations or deviations  
+✅ Schedule initial training for users  
+
+### Ongoing Maintenance
+🔄 Review dashboard performance monthly  
+📊 Update KPI formulas as business rules evolve  
+👥 Conduct annual user feedback surveys  
+🛡️ Maintain audit trails for compliance  
+
+---
+
+**For questions or to request changes, please contact the Data Analytics team.**
+
+---
+
+*This documentation ensures clarity, consistency, and maintainability for all dashboard components across the Zoho ecosystem.*
