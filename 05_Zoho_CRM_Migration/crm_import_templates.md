@@ -3,11 +3,11 @@
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Accounts Import Template](#1-accounts-import-template-customers)
+2. [Accounts Import Template (Customers)](#1-accounts-import-template-customers)
 3. [Contacts Import Template](#2-contacts-import-template)
-4. [Deals Import Template](#3-deals-import-template-orders)
+4. [Deals Import Template (Orders)](#3-deals-import-template-orders)
 5. [Products Import Template](#4-products-import-template)
-6. [Tickets Import Template](#5-tickets-import-template-zoho-desk--crm-sync)
+6. [Tickets Import Template (Zoho Desk → CRM Sync)](#5-tickets-import-template-zoho-desk--crm-sync)
 7. [Custom Fields Import Template](#6-custom-fields-import-template)
 8. [Validation Rules](#7-validation-rules)
 9. [Conclusion](#conclusion)
