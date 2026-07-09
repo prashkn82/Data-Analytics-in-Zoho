@@ -1,8 +1,6 @@
 🚀 **Critical Business Data Transformation – Zoho CRM Migration & Analytics**
 
 
-🚀 **DATA MANAGEMENT ON ANALYSIS & TRANSFORMATION OF BUSINESS - CRITICAL DATA**
-
 📌 **Project Overview**
 
 This project focuses on designing and implementing end-to-end data integration and migration solutions for enterprise organisations transitioning from legacy or fragmented systems to Zoho One due to scalability limitations, system discontinuation risks, and the need for a unified business platform.
