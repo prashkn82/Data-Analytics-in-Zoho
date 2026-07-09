@@ -1,4 +1,4 @@
-🚀 **# Critical Business Data Transformation – Zoho CRM Migration & Analytics**
+🚀 **Critical Business Data Transformation – Zoho CRM Migration & Analytics**
 
 
 🚀 **DATA MANAGEMENT ON ANALYSIS & TRANSFORMATION OF BUSINESS - CRITICAL DATA**
@@ -12,9 +12,9 @@ The solution involved building a robust SQL-based ETL pipeline to extract, clean
 🎯 **Objectives**
 
 - Migrate customer and sales data from legacy systems to Zoho CRM.
-- Clean and standardize inconsistent data before migration.
+- Clean and standardise inconsistent data before migration.
 - Maintain data integrity throughout the migration process.
-- Integrate multiple Zoho applications for centralized reporting.
+- Integrate multiple Zoho applications for centralised reporting.
 - Automate data quality validation and reporting.
 
 
